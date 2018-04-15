@@ -15,6 +15,30 @@ public class FlopkartUser
 	private String pic_URL;
 	private String password;
 	private String address;
+	private Integer wallet;
+	private String secret;
+	
+	
+	public String getSecret()
+	{
+		return secret;
+	}
+
+	public void setSecret(String secret)
+	{
+		this.secret = secret;
+	}
+
+	public Integer getWallet()
+	{
+		return wallet;
+	}
+
+	public void setWallet(Integer wallet)
+	{
+		this.wallet = wallet;
+	}
+
 	public int getId()
 	{
 		return id;

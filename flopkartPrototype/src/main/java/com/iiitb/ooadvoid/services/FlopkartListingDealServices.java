@@ -1,5 +1,6 @@
 package com.iiitb.ooadvoid.services;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -31,7 +32,7 @@ public class FlopkartListingDealServices
 	@GET
 	@Path("/today")
 	@Produces("application/json")
-	public List<FlopkartListingDeal> getTodayFlopkartListingDeals()
+	public List<FlopkartListingDeal> getTodayFlopkartListingDeals() throws ParseException
 	{
 		FlopkartListingDealDAO dao = new FlopkartListingDealDAO();
 		List<FlopkartListingDeal> listingdeal = dao.getTodayFlopkartListingDeals();
@@ -55,6 +56,17 @@ public class FlopkartListingDealServices
 	{
 		FlopkartListingDealDAO dao = new FlopkartListingDealDAO();
 		List<FlopkartListingDeal> deals = dao.getFlopkartListingDealsByListingId(listingid);
+		return deals;
+	}
+
+
+	@GET
+	@Path("/combo/{id}")
+	@Produces("application/json")
+	public List<FlopkartListingDeal> getFlopkartListingDealsByComboId(@PathParam("id") String comboid)
+	{
+		FlopkartListingDealDAO dao = new FlopkartListingDealDAO();
+		List<FlopkartListingDeal> deals = dao.getFlopkartListingDealsByComboId(comboid);
 		return deals;
 	}
 

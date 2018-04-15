@@ -136,5 +136,6 @@
 	<script src="./bootstrapFiles/js/scripts.js"></script>
 	<script src="./customJavascripts/cookies.js"></script>
 	<script src="./customJavascripts/header.js"></script>
-	
+	<script src="./bootstrapFiles/js/sweetalert.min.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	

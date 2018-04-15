@@ -1,8 +1,10 @@
 package com.iiitb.ooadvoid.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -26,6 +28,21 @@ public class HibernateDAO<E>
 	}
 
 	@SuppressWarnings("unchecked")
+	public List<E> listSorted(E ent, String sortBy, int n)
+	{
+
+		session = SessionUtil.getSession();
+		session.flush();
+		Criteria c = session.createCriteria(ent.getClass());
+		c.addOrder(Order.desc(sortBy)).setMaxResults(n);
+		List<E> entity = c.list();
+		session.clear();
+		session.flush();
+		session.close();
+		return entity;
+	}
+
+	@SuppressWarnings("unchecked")
 	public List<E> list(E ent)
 	{
 
@@ -33,6 +50,7 @@ public class HibernateDAO<E>
 		session.flush();
 		Query query = session.createQuery("from "+ent.getClass().getName());
 		List<E> entity = query.list();
+		session.clear();
 		session.flush();
 		session.close();
 		return entity;
@@ -45,6 +63,7 @@ public class HibernateDAO<E>
 		tx = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		E ent = (E) session.get(entity.getClass(), new Integer(id));
+		session.evict(ent);
 		tx.commit();
 		session.flush();
 		session.close();
@@ -150,6 +169,7 @@ public class HibernateDAO<E>
 		Query query = session.createQuery(hql);
 		query.setParameter("val", val);
 		List<E> entity = query.list();
+		session.clear();
 		session.flush();
 		session.close();
 		if (entity.size() == 0)
@@ -182,6 +202,7 @@ public class HibernateDAO<E>
 		query.setParameter("val1", val1);
 		query.setParameter("val2", val2);
 		List<E> entity = query.list();
+		session.clear();
 		session.flush();
 		session.close();
 		if (entity.size() == 0)
@@ -198,6 +219,7 @@ public class HibernateDAO<E>
 		Query query = session.createQuery(hql);
 		query.setParameter("val1", val1);
 		List<E> entity = query.list();
+		session.clear();
 		session.flush();
 		session.close();
 		return entity;
@@ -212,6 +234,7 @@ public class HibernateDAO<E>
 		Query query = session.createQuery(hql);
 		query.setParameter("val1", val1);
 		List<E> entity = query.list();
+		session.clear();
 		session.flush();
 		session.close();
 		return entity;
@@ -227,6 +250,7 @@ public class HibernateDAO<E>
 		query.setParameter("val1", val1);
 		query.setParameter("val2", val2);
 		List<E> entity = query.list();
+		session.clear();
 		session.flush();
 		session.close();
 		return entity;
@@ -242,6 +266,7 @@ public class HibernateDAO<E>
 		query.setParameter("val1", val1);
 		query.setParameter("val2", val2);
 		List<E> entity = query.list();
+		session.clear();
 		session.flush();
 		session.close();
 		return entity;

@@ -2,19 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	 <class name="com.iiitb.ooadvoid.pojo.FlopkartDeal" table="FlopkartDeal">
+	 <class name="com.iiitb.ooadvoid.pojo.FlopkartCart" table="FlopkartCart">
 	 
       <meta attribute = "class-description">
-         This class contains the Flopkart Deal detail. 
+         This class contains the Flopkart cart detail. 
       </meta>
       
       <id name = "id" type = "int" column = "id">
          <generator class="native"/>
       </id>
       
-      <property name = "dealname" column = "dealname" type = "string" unique="true"/>
-      <property name = "description" column = "description" type = "string"/>
-      <property name = "days" column = "days" type = "int"/>
-	 
+      <property name = "userId" column = "userId" type = "int"/>
+      <property name = "itemId" column = "itemId" type = "string"/>
+      <property name = "quantity" column = "quantity" type = "int"/>
 	</class>
 </hibernate-mapping>
